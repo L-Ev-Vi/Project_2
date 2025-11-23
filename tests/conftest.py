@@ -28,7 +28,7 @@ def file_json():
             {
                 "name": "Dron",
                 "description": "new_dron",
-                "products": [{"name": "Dron_bot", "description": "Now", "_price": 190.8, "quantity": 5}],
+                "products": [{"name": "Dron_bot", "description": "Now", "price": 190.8, "quantity": 5}],
             }
         ]
     )
@@ -41,7 +41,7 @@ def category_3():
 
 @pytest.fixture
 def product_new():
-    return {"name": "Dron_bot", "description": "Now", "_price": 200, "quantity": 5}
+    return {"name": "Dron_bot", "description": "Now", "price": 200, "quantity": 5}
 
 @pytest.fixture
 def existing_product():

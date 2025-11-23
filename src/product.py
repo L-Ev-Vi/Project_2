@@ -9,11 +9,11 @@ class Product:
     _price: float  # цена товара
     quantity: int  # количество в наличии
 
-    def __init__(self, name: str, description: str, _price: float, quantity: int) -> None:
+    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """Метод для инициализации класса Товар."""
         self.name = name
         self.description = description
-        self._price = _price
+        self._price = price
         self.quantity = quantity
 
     @classmethod
@@ -43,11 +43,18 @@ class Product:
         return self._price
 
     @price.setter
-    def price(self, new_price: float|int) -> str | None:
+    def price(self, new_price: float | int) -> str | None:
         """Cеттер который реализует проверку новой цены продукта: в случае если цена товара равна или ниже нуля,
         выводите сообщение в консоль “Цена не должна быть нулевая или отрицательная”,
-        при этом новая цена не устанавливается."""
+        при этом новая цена не устанавливается. В случае если новая цена товара ниже установленной ранее,
+        отправляется запрос подтверждения пользователем вручную через ввод где 'y' или 'Y' (значит yes)
+        согласие понизить цену, а любой другой вариант вода (значит no) отмена действия соответственно."""
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
+        elif self._price > new_price:
+            confirmation = input("Новая цена товара ниже установленной ранее, подтвердить ввод? "
+                                 "'Y'(значит yes) / 'N'(значит no)\n->")
+            if confirmation.lower() == "y":
+                self._price = new_price
         else:
             self._price = new_price

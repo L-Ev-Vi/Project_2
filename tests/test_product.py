@@ -1,3 +1,6 @@
+
+from unittest.mock import patch
+
 from src.product import Product
 
 
@@ -40,3 +43,14 @@ def test_price_positive(existing_product):
     existing_product.price = 100
     assert existing_product._price == 100
 
+@patch('builtins.input')
+def test_price_confirmation_y(mock_input, product_dron):
+    mock_input.return_value = "Y"
+    product_dron.price = 100
+    assert product_dron._price == 100
+
+@patch('builtins.input')
+def test_price_confirmation_n(mock_input, product_dron):
+    mock_input.return_value = "w"
+    product_dron.price = 100
+    assert product_dron._price == 190.8
