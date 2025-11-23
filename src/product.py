@@ -6,14 +6,14 @@ class Product:
 
     name: str  # название товара
     description: str  # описание товара
-    _price: float  # цена товара
+    __price: float  # цена товара
     quantity: int  # количество в наличии
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """Метод для инициализации класса Товар."""
         self.name = name
         self.description = description
-        self._price = price
+        self.__price = price
         self.quantity = quantity
 
     @classmethod
@@ -29,8 +29,8 @@ class Product:
             for product in list_products:
                 if product.name == new_product.name:
                     product.quantity += new_product.quantity
-                    if product._price < new_product._price:
-                        product._price = new_product._price
+                    if product.__price < new_product.__price:
+                        product.__price = new_product.__price
                     return product
                 return cls(**product_parameters)
         else:
@@ -39,7 +39,7 @@ class Product:
     @property
     def price(self) -> float | int:
         """Гетер который возвращает цену товаров в виде числа"""
-        return self._price
+        return self.__price
 
     @price.setter
     def price(self, new_price: float | int) -> None:
@@ -50,11 +50,11 @@ class Product:
         согласие понизить цену, а любой другой вариант вода (значит no) отмена действия соответственно."""
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
-        elif self._price > new_price:
+        elif self.__price > new_price:
             confirmation = input(
                 "Новая цена товара ниже установленной ранее, подтвердить ввод? " "'Y'(значит yes) / 'N'(значит no)\n->"
             )
             if confirmation.lower() == "y":
-                self._price = new_price
+                self.__price = new_price
         else:
-            self._price = new_price
+            self.__price = new_price
