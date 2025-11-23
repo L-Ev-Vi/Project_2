@@ -17,7 +17,7 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, product_parameters: dict, list_products: list = None) -> Any:
+    def new_product(cls, product_parameters: dict, list_products: Any = None) -> Any:
         """Класс-метод который принимает на вход параметры товара в словаре,
         и возвращать созданный объект класса Product. Также метод может проводить проверку наличия такого же товара
         схожего по имени, и в случае если товар уже существует, то количество старого товара и нового суммируется.
@@ -32,8 +32,7 @@ class Product:
                     if product._price < new_product._price:
                         product._price = new_product._price
                     return product
-                else:
-                    return cls(**product_parameters)
+                return cls(**product_parameters)
         else:
             return cls(**product_parameters)
 
@@ -43,7 +42,7 @@ class Product:
         return self._price
 
     @price.setter
-    def price(self, new_price: float | int) -> str | None:
+    def price(self, new_price: float | int) -> None:
         """Cеттер который реализует проверку новой цены продукта: в случае если цена товара равна или ниже нуля,
         выводите сообщение в консоль “Цена не должна быть нулевая или отрицательная”,
         при этом новая цена не устанавливается. В случае если новая цена товара ниже установленной ранее,
@@ -52,8 +51,9 @@ class Product:
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
         elif self._price > new_price:
-            confirmation = input("Новая цена товара ниже установленной ранее, подтвердить ввод? "
-                                 "'Y'(значит yes) / 'N'(значит no)\n->")
+            confirmation = input(
+                "Новая цена товара ниже установленной ранее, подтвердить ввод? " "'Y'(значит yes) / 'N'(значит no)\n->"
+            )
             if confirmation.lower() == "y":
                 self._price = new_price
         else:

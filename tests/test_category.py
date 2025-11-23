@@ -17,5 +17,4 @@ def test_add_product(category_3, product_dron):
 
 
 def test_product(category_bakery):
-    assert category_bakery.products == ("cookie, 20 руб. Остаток: 10 шт.\n"
-                                        "pie, 50 руб. Остаток: 5 шт.\n")
+    assert category_bakery.products == ("cookie, 20 руб. Остаток: 10 шт.\n" "pie, 50 руб. Остаток: 5 шт.\n")

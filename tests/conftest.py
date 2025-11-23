@@ -43,6 +43,7 @@ def category_3():
 def product_new():
     return {"name": "Dron_bot", "description": "Now", "price": 200, "quantity": 5}
 
+
 @pytest.fixture
 def existing_product():
     return Product("cookie", "cookies", 0, 10)
