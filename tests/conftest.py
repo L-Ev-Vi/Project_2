@@ -32,3 +32,18 @@ def file_json():
             }
         ]
     )
+
+
+@pytest.fixture
+def category_3():
+    return Category("Num", "new_num", [])
+
+
+@pytest.fixture
+def product_new():
+    return {"name": "Dron_bot", "description": "Now", "price": 200, "quantity": 5}
+
+
+@pytest.fixture
+def existing_product():
+    return Product("cookie", "cookies", 0, 10)
