@@ -16,6 +16,17 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        """Магический метод, который отображает информации об объекте класса для пользователей"""
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: object) -> float:
+        """Магический метод, который позволяет получать суммарную стоимость складываемых товаров на складе."""
+        if not isinstance(other, Product):
+            raise TypeError
+        else:
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
+
     @classmethod
     def new_product(cls, product_parameters: dict, list_products: Any = None) -> Any:
         """Класс-метод который принимает на вход параметры товара в словаре,

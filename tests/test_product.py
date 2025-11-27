@@ -1,5 +1,7 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product
 
 
@@ -59,3 +61,16 @@ def test_price_confirmation_n(mock_input, product_dron):
     mock_input.return_value = "w"
     product_dron.price = 100
     assert product_dron.price == 190.8
+
+
+def test_information_output(product_dron):
+    assert str(product_dron) == "Dron_bot, 190.8 руб. Остаток: 5 шт."
+
+
+def test_total_cost(product_dron, existing_product):
+    assert product_dron + existing_product == 954
+
+
+def test_total_cost_error(product_dron, existing_product):
+    with pytest.raises(TypeError):
+        product_dron + 100

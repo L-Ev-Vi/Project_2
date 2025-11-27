@@ -17,3 +17,7 @@ def test_add_product(category_3, product_dron):
 
 def test_product(category_bakery):
     assert category_bakery.products == "cookie, 20 руб. Остаток: 10 шт.\npie, 50 руб. Остаток: 5 шт.\n"
+
+
+def test_displaying_information_about_category(category_fpv):
+    assert str(category_fpv) == "dron, количество продуктов: 8 шт."

@@ -20,6 +20,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+    def __str__(self) -> str:
+        """Магический метод, который отображает информацию, об общем количестве товаров на складе, для пользователей"""
+        quantity_stock = 0
+        for product in self.__products:
+            quantity_stock += product.quantity
+        return f"{self.name}, количество продуктов: {quantity_stock} шт."
+
     def add_product(self, product: object) -> None:
         """Метод для добавления товара в категорию товаров. Метод принимает объект,
         и записывает его в приватный атрибут списка товаров."""
@@ -32,5 +39,5 @@ class Category:
         """Гетер который возвращает список товаров в виде строк."""
         product_str = ""
         for product in self.__products:
-            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            product_str += f"{product.__str__()}\n"
         return product_str
