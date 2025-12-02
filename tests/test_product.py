@@ -74,3 +74,8 @@ def test_total_cost(product_dron, existing_product):
 def test_total_cost_error(product_dron, existing_product):
     with pytest.raises(TypeError):
         product_dron + 100
+
+
+def test_total_cost_error_different_products(smartphone1, grass1):
+    with pytest.raises(TypeError):
+        smartphone1 + grass1

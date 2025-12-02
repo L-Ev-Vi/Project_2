@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Product:
-    """Клас для определения товаров их кратких характеристик, ценны и количества."""
+    """Класс для определения товаров их кратких характеристик, ценны и количества."""
 
     name: str  # название товара
     description: str  # описание товара
@@ -23,6 +23,8 @@ class Product:
     def __add__(self, other: object) -> float:
         """Магический метод, который позволяет получать суммарную стоимость складываемых товаров на складе."""
         if not isinstance(other, Product):
+            raise TypeError
+        if type(self) is not type(other):
             raise TypeError
         else:
             return (self.__price * self.quantity) + (other.__price * other.quantity)

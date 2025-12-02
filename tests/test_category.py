@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_init_category(category_bakery, category_fpv):
     assert category_bakery.name == "bakery"
     assert category_bakery.description == "bakery"
@@ -21,3 +24,15 @@ def test_product(category_bakery):
 
 def test_displaying_information_about_category(category_fpv):
     assert str(category_fpv) == "dron, количество продуктов: 8 шт."
+
+
+class TestFrom:
+    pass
+
+
+test1 = TestFrom()
+
+
+def test_add_product_error(category_3):
+    with pytest.raises(TypeError):
+        category_3.add_product(test1)
