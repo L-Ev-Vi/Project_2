@@ -1,5 +1,7 @@
 from typing import List
 
+from src.product import Product
+
 
 class Category:
     """Клас  для определения категории товаров"""
@@ -30,6 +32,8 @@ class Category:
     def add_product(self, product: object) -> None:
         """Метод для добавления товара в категорию товаров. Метод принимает объект,
         и записывает его в приватный атрибут списка товаров."""
+        if not isinstance(product, Product):
+            raise TypeError
         self.__products.append(product)
 
         Category.product_count += 1
