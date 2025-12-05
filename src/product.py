@@ -1,7 +1,10 @@
 from typing import Any
 
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
-class Product:
+
+class Product(BaseProduct, PrintMixin):
     """Класс для определения товаров их кратких характеристик, ценны и количества."""
 
     name: str  # название товара
@@ -9,15 +12,16 @@ class Product:
     __price: float  # цена товара
     quantity: int  # количество в наличии
 
-    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
-        """Метод для инициализации класса Товар."""
+    def __init__(self, name: str, description: str, price: float, quantity: int):
+        """Метод для инициализации объекта-класса Товар."""
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
-        """Магический метод, который отображает информации об объекте класса для пользователей"""
+        """Магический метод, который отображает информацию об объекте класса для пользователей"""
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: object) -> float:
@@ -32,7 +36,7 @@ class Product:
     @classmethod
     def new_product(cls, product_parameters: dict, list_products: Any = None) -> Any:
         """Класс-метод который принимает на вход параметры товара в словаре,
-        и возвращать созданный объект класса Product. Также метод может проводить проверку наличия такого же товара
+        и возвращает созданный объект класса Product. Также метод может проводить проверку наличия такого же товара
         схожего по имени, и в случае если товар уже существует, то количество старого товара и нового суммируется.
         При конфликте цен выбирается та цена которая является более высокой.
         Для этого можно в метод передать не обязательный параметр в виде списка товаров,
