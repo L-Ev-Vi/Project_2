@@ -3,6 +3,7 @@ import json
 import pytest
 
 from src.category import Category
+from src.order import Order
 from src.product import Product
 from src.product_lawngrass import LawnGrass
 from src.product_smartphone import Smartphone
@@ -61,3 +62,8 @@ def smartphone1():
 @pytest.fixture
 def grass1():
     return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+
+@pytest.fixture
+def order1():
+    return Order("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 1)

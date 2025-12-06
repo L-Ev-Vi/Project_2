@@ -1,9 +1,10 @@
 from typing import List
 
+from src.base_category_order import BaseCategoryOrder
 from src.product import Product
 
 
-class Category:
+class Category(BaseCategoryOrder):
     """Клас  для определения категории товаров"""
 
     name: str  # название категории
@@ -14,7 +15,7 @@ class Category:
     product_count = 0  # количество товаров
 
     def __init__(self, name: str, description: str, products: List) -> None:
-        """Метод для инициализации класса Категория."""
+        """Метод для инициализации объекта-класса Категория."""
         self.name = name
         self.description = description
         self.__products = products
