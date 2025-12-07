@@ -36,3 +36,11 @@ test1 = TestFrom()
 def test_add_product_error(category_3):
     with pytest.raises(TypeError):
         category_3.add_product(test1)
+
+
+def test_middle_price_error(category_3):
+    assert category_3.middle_price() == 0.0
+
+
+def test_middle_price(category_fpv):
+    assert category_fpv.middle_price() == 138

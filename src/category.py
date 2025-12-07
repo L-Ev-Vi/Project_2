@@ -46,3 +46,16 @@ class Category(BaseCategoryOrder):
         for product in self.__products:
             product_str += f"{product.__str__()}\n"
         return product_str
+
+    def middle_price(self) -> float:
+        """Метод, который подсчитывает средний ценник всех товаров. Если в категории нет товаров, возвращается ноль."""
+        quantity_products_in_category = 0
+        the_sum_all_goods = 0
+        try:
+            for product in self.__products:
+                quantity_products_in_category += product.quantity
+                the_sum_all_goods += product.price * product.quantity
+            average_price_goods = round(the_sum_all_goods / quantity_products_in_category, 2)
+        except ZeroDivisionError:
+            return 0.0
+        return average_price_goods

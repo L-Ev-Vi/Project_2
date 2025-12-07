@@ -8,7 +8,7 @@ def test_init_order(order1):
     assert (
         order1.products
         == "Заказ №1, Товар: Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, в количестве: 1 шт., "
-           "стоимостью: 180000.0\n"
+        "стоимостью: 180000.0\n"
     )
 
     assert order1._Order__ID_ORDER == 2
@@ -19,7 +19,7 @@ def test_init_order(order1):
     assert (
         order1.products
         == "Заказ №1, Товар: Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, в количестве: 3 шт., "
-           "стоимостью: 540000.0\n"
+        "стоимостью: 540000.0\n"
     )
     assert order1._Order__ID_ORDER == 2
     assert order1._Order__order_count == 1
