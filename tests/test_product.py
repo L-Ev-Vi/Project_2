@@ -79,3 +79,9 @@ def test_total_cost_error(product_dron, existing_product):
 def test_total_cost_error_different_products(smartphone1, grass1):
     with pytest.raises(TypeError):
         smartphone1 + grass1
+
+
+def test_print_mixin(capsys):
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    captured = capsys.readouterr()
+    assert captured.out == "Product('Samsung Galaxy S23 Ultra', '256GB, Серый цвет, 200MP камера', 180000.0, 5)\n"
