@@ -3,6 +3,7 @@ import json
 import pytest
 
 from src.category import Category
+from src.error_when_adding_a_product import ErrorWhenAddingAProduct
 from src.order import Order
 from src.product import Product
 from src.product_lawngrass import LawnGrass
@@ -67,3 +68,15 @@ def grass1():
 @pytest.fixture
 def order1():
     return Order("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 1)
+
+
+@pytest.fixture
+def quantity_is_zero():
+    a = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 1)
+    a.quantity = 0
+    return a
+
+
+@pytest.fixture
+def my_exceptions():
+    return ErrorWhenAddingAProduct()

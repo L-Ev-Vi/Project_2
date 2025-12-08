@@ -1,6 +1,7 @@
 from typing import List
 
 from src.base_category_order import BaseCategoryOrder
+from src.error_when_adding_a_product import ErrorAddingAnEmptyValue
 from src.product import Product
 
 
@@ -35,9 +36,17 @@ class Category(BaseCategoryOrder):
         и записывает его в приватный атрибут списка товаров."""
         if not isinstance(product, Product):
             raise TypeError
-        self.__products.append(product)
-
-        Category.product_count += 1
+        try:
+            if product.quantity <= 0:
+                raise ErrorAddingAnEmptyValue
+            self.__products.append(product)
+        except ErrorAddingAnEmptyValue as e:
+            print(e)
+        else:
+            Category.product_count += 1
+            print("Товар добавлен.")
+        finally:
+            print("Обработка добавления товара завершена.")
 
     @property
     def products(self) -> str:
