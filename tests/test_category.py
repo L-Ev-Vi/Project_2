@@ -26,13 +26,28 @@ def test_displaying_information_about_category(category_fpv):
     assert str(category_fpv) == "dron, количество продуктов: 8 шт."
 
 
-class TestFrom:
-    pass
-
-
-test1 = TestFrom()
-
-
-def test_add_product_error(category_3):
+def test_add_product_error(category_3, category_fpv):
     with pytest.raises(TypeError):
-        category_3.add_product(test1)
+        category_3.add_product(category_fpv)
+
+
+def test_middle_price_error(category_3):
+    assert category_3.middle_price() == 0.0
+
+
+def test_middle_price(category_fpv):
+    assert category_fpv.middle_price() == 138
+
+
+def test_add_product_error_quantity(category_3, quantity_is_zero, capsys):
+    category_3.add_product(quantity_is_zero)
+    captured = capsys.readouterr()
+    assert captured.out == (
+        "Попытка добавить товар с нулевым количеством\n" "Обработка добавления товара завершена.\n"
+    )
+
+
+def test_error_when_adding_a_product(my_exceptions, capsys):
+    print(my_exceptions)
+    captured = capsys.readouterr()
+    assert captured.out == "Общая ошибка при добавлении товара\n"
